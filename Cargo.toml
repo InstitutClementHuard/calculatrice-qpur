@@ -1,0 +1,34 @@
+[package]
+name = "calculatrice_qpur"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# UI cross-plateforme (natif + wasm via WebRunner)
+eframe = "0.33.3"
+
+# Noyau exact (rationnels / big int)
+num-bigint = "0.4"
+num-rational = "0.4"
+num-traits = "0.2"
+
+# -----------------------------
+# Dépendances SEULEMENT en wasm32
+# -----------------------------
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+# Pour #[wasm_bindgen(start)] + types JS
+wasm-bindgen = "0.2"
+
+# Pour async/await côté wasm (WebRunner::start est async)
+wasm-bindgen-futures = "0.4"
+
+# Accès DOM: window/document/canvas
+web-sys = { version = "0.3", features = ["Window", "Document", "HtmlCanvasElement"] }
+
+# Optionnel (pas requis par ton code actuel, mais souvent pratique en wasm)
+# js-sys = "0.3"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
