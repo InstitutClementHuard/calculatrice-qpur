@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Calculatrice Q-pur</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <style>
+    html, body { margin:0; height:100%; background:#111; overflow:hidden; touch-action:manipulation; }
+    canvas { width:100%; height:100%; display:block; outline:none; }
+    #loading { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; color:#aaa; font-family:sans-serif; }
+  </style>
+</head>
+<body>
+  <div id="loading">Chargement…</div>
+  <canvas id="the_canvas_id"></canvas>
+
+  <script type="module">
+    import init from "./calculatrice_qpur.js";
+    await init();
+    document.getElementById("loading").remove();
+  </script>
+</body>
+</html>
